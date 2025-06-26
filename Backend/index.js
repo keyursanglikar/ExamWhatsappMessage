@@ -196,10 +196,11 @@ app.post("/api/send-result", async (req, res) => {
     console.log("📄 PDF generated:", filepath);
 
     // ✅ Upload to Cloudinary (as raw file)
-   const uploadResult = await cloudinary.uploader.upload(filepath, {
-  resource_type: "raw",
+  const uploadResult = await cloudinary.uploader.upload(filepath, {
+  resource_type: "auto", // not raw
   folder: "exam-results",
- upload_preset: "ml_default", // 🔥 Required for unsigned access
+  use_filename: true,
+  unique_filename: false,
 });
     console.log("☁️ Cloudinary uploaded:", uploadResult.secure_url);
 
