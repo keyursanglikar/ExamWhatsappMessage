@@ -196,12 +196,14 @@ app.post("/api/send-result", async (req, res) => {
     console.log("📄 PDF generated:", filepath);
 
     // ✅ Upload to Cloudinary (as raw file)
-  const uploadResult = await cloudinary.uploader.upload(filepath, {
-  resource_type: "auto", // not raw
+const uploadResult = await cloudinary.uploader.upload(filepath, {
+  resource_type: "auto",           // Let Cloudinary auto-detect PDF
   folder: "exam-results",
   use_filename: true,
   unique_filename: false,
+  type: "upload"                   // Ensures public delivery
 });
+
     console.log("☁️ Cloudinary uploaded:", uploadResult.secure_url);
 
     // ✅ Delete local PDF
