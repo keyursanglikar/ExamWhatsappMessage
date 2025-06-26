@@ -199,7 +199,7 @@ app.post("/api/send-result", async (req, res) => {
    const uploadResult = await cloudinary.uploader.upload(filepath, {
   resource_type: "raw",
   folder: "exam-results",
-  type: "upload", // <== This makes the PDF publicly accessible
+ upload_preset: "ml_default", // 🔥 Required for unsigned access
 });
     console.log("☁️ Cloudinary uploaded:", uploadResult.secure_url);
 
