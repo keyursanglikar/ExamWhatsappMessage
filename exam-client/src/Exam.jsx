@@ -34,7 +34,7 @@ const ExamPage = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/api/send-result", payload);
+      const res = await axios.post("https://examwhatsappmessage.onrender.com/api/send-result", payload);
       alert("Result sent to parent's WhatsApp!");
     } catch (err) {
       console.error(err);
