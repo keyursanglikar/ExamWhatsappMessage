@@ -196,11 +196,11 @@ app.post("/api/send-result", async (req, res) => {
     console.log("📄 PDF generated:", filepath);
 
     // ✅ Upload to Cloudinary (as raw file)
-    const uploadResult = await cloudinary.uploader.upload(filepath, {
-      resource_type: "raw",
-      folder: "exam-results",
-    });
-
+   const uploadResult = await cloudinary.uploader.upload(filepath, {
+  resource_type: "raw",
+  folder: "exam-results",
+  type: "upload", // <== This makes the PDF publicly accessible
+});
     console.log("☁️ Cloudinary uploaded:", uploadResult.secure_url);
 
     // ✅ Delete local PDF
